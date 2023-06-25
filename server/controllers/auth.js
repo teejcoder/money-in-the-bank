@@ -1,6 +1,66 @@
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
+const axios = require("axios");
+
+
+// CREATE AUTH TOKEN
+exports.authToken = (req,res) => {
+  let globalAccessToken = '';
+
+  const options = {
+    method: 'POST',
+    url: 'https://au-api.basiq.io/token',
+    headers: {
+      accept: 'application/json',
+      'basiq-version': '3.0',
+      'content-type': 'application/x-www-form-urlencoded',
+      Authorization: process.env.API_KEY
+    }
+  };
+  axios
+    .request(options)
+    .then(function (response) {
+      globalAccessToken = response.data.access_token;
+      console.log(response.data);
+      console.log('Bearer '+ globalAccessToken)
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+
+}
+
+
+// CREATE BASIQ USER
+exports.createBasiqUser = (req,res, globalAccessToken) => {
+const options = {
+  method: 'POST',
+  url: 'https://au-api.basiq.io/users',
+  headers: {accept: 'application/json', 
+    'basiq-version': '3.0', 
+    'content-type': 'application/json',
+    Authorization: 'Bearer '
+},
+  data: {
+    email: 'moe@moemail.com',
+    mobile: '',
+    firstName: 'user.firstName',
+    lastName: 'user.lastName'
+  }
+};
+axios
+  .request(options)
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.error(error);
+  });
+}
+
+
+
 
 exports.getLogin = (req, res) => {
   if (req.user) {
