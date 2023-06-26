@@ -21,6 +21,7 @@ exports.authToken = (req,res) => {
     .then(function (response) {
       Authorization = 'Bearer ' + response.data.access_token;
       console.log(response.data);
+      res.redirect("/profile");
     })
     .catch(function (error) {
       console.error(error);
@@ -51,6 +52,7 @@ exports.createBasiqUser = (req,res) => {
       userId = response.data.id;
       console.log(response.data);
       console.log(userId)
+      res.redirect("/profile");
     })
     .catch(function (error) {
       console.error(error);
@@ -63,7 +65,6 @@ exports.getAccounts = (req,res) => {
   const options = {
     method: 'GET',
     url: `https://au-api.basiq.io/users/${userId}/accounts`,
-    params: {filter: 'account.id'},
     headers: {
       'basiq-version': '3.0', 
       accept: 'application/json',
