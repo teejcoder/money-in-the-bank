@@ -20,6 +20,6 @@ router.get("/authToken", authController.authToken)
 
 router.get("/createBasiqUser", authController.createBasiqUser)
 // // router.get("/getBasiqUser", authController.getBasiqUser)
-// router.get("/getAccounts", authController.getAccounts)
+router.get("/getAccounts", authController.getAccounts)
 
 module.exports = router;
