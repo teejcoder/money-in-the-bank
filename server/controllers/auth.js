@@ -63,14 +63,13 @@ exports.getAccounts = (req,res) => {
   const options = {
     method: 'GET',
     url: `https://au-api.basiq.io/users/${userId}/accounts`,
-    params: {},
+    params: {filter: 'account.id'},
     headers: {
       'basiq-version': '3.0', 
       accept: 'application/json',
       authorization: `${Authorization}`
     }
   };
-  
   axios
     .request(options)
     .then(function (response) {
