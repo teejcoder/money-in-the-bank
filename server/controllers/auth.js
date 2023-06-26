@@ -7,7 +7,6 @@ const axios = require("axios");
 // CREATE AUTH TOKEN
 exports.authToken = (req,res) => {
   let globalAccessToken = '';
-
   const options = {
     method: 'POST',
     url: 'https://au-api.basiq.io/token',
@@ -24,6 +23,7 @@ exports.authToken = (req,res) => {
       globalAccessToken = response.data.access_token;
       console.log(response.data);
     })
+    
     .catch(function (error) {
       console.error(error);
     });
@@ -39,7 +39,6 @@ exports.createBasiqUser = (req,res) => {
     headers: {accept: 'application/json', 
       'basiq-version': '3.0', 
       'content-type': 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXJ0bmVyaWQiOiI2NmE4MjIyYS02N2YyLTRkYTYtODhlNy1mOGEwN2ExOWFmOTAiLCJhcHBsaWNhdGlvbmlkIjoiMzA4NDMyZTAtNjgzOS00ZGU0LWJkZDEtOWVhMzc2ZWUyZDJhIiwic2NvcGUiOiJTRVJWRVJfQUNDRVNTIiwic2FuZGJveF9hY2NvdW50Ijp0cnVlLCJjb25uZWN0X3N0YXRlbWVudHMiOmZhbHNlLCJlbnJpY2giOiJkaXNhYmxlZCIsImVucmljaF9lbnRpdHkiOmZhbHNlLCJlbnJpY2hfbG9jYXRpb24iOmZhbHNlLCJlbnJpY2hfY2F0ZWdvcnkiOmZhbHNlLCJhZmZvcmRhYmlsaXR5Ijoic2FuZGJveCIsImluY29tZSI6InNhbmRib3giLCJleHBlbnNlcyI6InNhbmRib3giLCJleHAiOjE2ODc2OTgxOTQsImlhdCI6MTY4NzY5NDU5NCwidmVyc2lvbiI6IjMuMCIsImRlbmllZF9wZXJtaXNzaW9ucyI6W119.XvMSj0GyFUwVmglL-Q1Vn55cLr6h1ZVLVqgSKTeel8A'
   },
     data: {
       email: 'gavin@hooli.com',
