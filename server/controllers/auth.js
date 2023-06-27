@@ -11,6 +11,7 @@ exports.authToken = (req,res) => {
     url: 'https://au-api.basiq.io/token',
     headers: {
       accept: 'application/json',
+      scope: 'server',
       'basiq-version': '3.0',
       'content-type': 'application/x-www-form-urlencoded',
       authorization: process.env.API_KEY
@@ -40,10 +41,10 @@ exports.createBasiqUser = (req,res) => {
       authorization: `${Authorization}`,
   },
     data: {
-      email: 'gavin@hooli.com',
+      email: 'moe@moemail.com',
       mobile: '',
-      firstName: 'Gavin',
-      lastName: 'Belson'
+      firstName: 'Moe',
+      lastName: 'Mosley'
     }
   };
   axios
@@ -58,6 +59,34 @@ exports.createBasiqUser = (req,res) => {
       console.error(error);
     });
 }
+
+// GET BASIQ USER
+
+exports.getBasiqUser = (req,res) => {
+
+  const options = {
+    method: 'GET',
+    url: 'https://au-api.basiq.io/users/44e501dd-03cc-42f9-912a-1b66f58c9dfd',
+    headers: {
+      accept: 'application/json',
+      authorization: `${Authorization}`
+    }
+  };
+  
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+      res.redirect("/profile");
+    })
+    .catch(function (error) {
+      console.error(error);
+  });
+
+}
+
+
+
 
 // GET USER ACCOUNTS
 exports.getAccounts = (req,res) => {
