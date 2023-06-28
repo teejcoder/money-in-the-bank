@@ -23,4 +23,6 @@ router.get("/getBasiqUser", authController.getBasiqUser)
 
 router.get("/getAccounts", authController.getAccounts)
 
+router.get("/getTransactions", authController.getTransactions)
+
 module.exports = router;

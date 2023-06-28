@@ -22,7 +22,6 @@ exports.authToken = (req,res) => {
     .then(function (response) {
       Authorization = 'Bearer ' + response.data.access_token;
       console.log(response.data);
-      res.redirect("/profile");
     })
     .catch(function (error) {
       console.error(error);
@@ -52,8 +51,6 @@ exports.createBasiqUser = (req,res) => {
     .then(function (response) {
       userId = response.data.id;
       console.log(response.data);
-      console.log(userId)
-      res.redirect("/profile");
     })
     .catch(function (error) {
       console.error(error);
@@ -66,7 +63,7 @@ exports.getBasiqUser = (req,res) => {
 
   const options = {
     method: 'GET',
-    url: 'https://au-api.basiq.io/users/44e501dd-03cc-42f9-912a-1b66f58c9dfd',
+    url: `https://au-api.basiq.io/users/${userId}`,
     headers: {
       accept: 'application/json',
       authorization: `${Authorization}`
@@ -77,16 +74,12 @@ exports.getBasiqUser = (req,res) => {
     .request(options)
     .then(function (response) {
       console.log(response.data);
-      res.redirect("/profile");
     })
     .catch(function (error) {
       console.error(error);
   });
 
 }
-
-
-
 
 // GET USER ACCOUNTS
 exports.getAccounts = (req,res) => {
@@ -108,6 +101,30 @@ exports.getAccounts = (req,res) => {
     .catch(function (error) {
       console.error(error);
   });
+
+};
+
+
+// GET TRANSACTIONS
+exports.getTransactions = (req, res) => {
+  const options = {
+    method: 'GET',
+    url: `https://au-api.basiq.io/users/${userId}/transactions`,
+    params: {limit: '500'},
+    headers: {
+      accept: 'application/json',
+      authorization: `${Authorization}`
+    }
+  };
+  
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 
 }
 
