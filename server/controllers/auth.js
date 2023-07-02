@@ -58,25 +58,25 @@ exports.createBasiqUser = (req,res) => {
 }
 
 
-exports.getConsents = (req,res) => {
-  const options = {
-    method: 'GET',
-    url: `https://au-api.basiq.io/users/${userId}/consents`,
-    headers: {
-      accept: 'application/json',
-      authorization: `${Authorization}`,
-    }
-  };
+// exports.getConsents = (req,res) => {
+//   const options = {
+//     method: 'GET',
+//     url: `https://au-api.basiq.io/users/${userId}/consents`,
+//     headers: {
+//       accept: 'application/json',
+//       authorization: `${Authorization}`,
+//     }
+//   };
 
-  axios
-    .request(options)
-    .then(function (response) {
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}
+//   axios
+//     .request(options)
+//     .then(function (response) {
+//       console.log(response.data);
+//     })
+//     .catch(function (error) {
+//       console.error(error);
+//     });
+// }
 
 
 
@@ -109,7 +109,6 @@ exports.createAuthLink = (req, res) => {
 // GET BASIQ USER
 
 exports.getBasiqUser = (req,res) => {
-
   const options = {
     method: 'GET',
     url: `https://au-api.basiq.io/users/${userId}`,
@@ -269,6 +268,7 @@ exports.postSignup = (req, res, next) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
     password: req.body.password,
   });
 

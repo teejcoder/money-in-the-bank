@@ -21,7 +21,7 @@ router.get("/authToken", authController.authToken)
 router.get("/createBasiqUser", authController.createBasiqUser)
 router.get("/getBasiqUser", authController.getBasiqUser)
 
-router.get("/getConsents", authController.getConsents)
+// router.get("/getConsents", authController.getConsents)
 
 router.get("/createAuthLink", authController.createAuthLink)
 
