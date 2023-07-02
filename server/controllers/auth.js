@@ -87,6 +87,7 @@ exports.getAccounts = (req,res) => {
   const options = {
     method: 'GET',
     url: `https://au-api.basiq.io/users/${userId}/accounts`,
+    params: {filter: 'account.id.eq%28%27AU20002%27%29'},
     headers: {
       'basiq-version': '3.0', 
       accept: 'application/json',
