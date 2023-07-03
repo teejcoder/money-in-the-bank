@@ -1,8 +1,12 @@
 
-function Header (){
+function Header () {
     return (
-    <h1>hello world</h1>,
-    <p>{User.firstName}</p>
+        <>
+        <section className="navbar">
+            <h1>hello world</h1>
+            <p>Hello,</p>
+        </section>
+        </>
     )
 }
 
