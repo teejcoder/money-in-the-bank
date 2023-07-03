@@ -179,6 +179,27 @@ template {
   display: none;
 }
 
+/* LOGIN SIGNUP PAGE */
+
+.loginContainer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonContainer {
+  width: 50%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 25px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
 /* BUTTONS */
 button {
   width: 150px;

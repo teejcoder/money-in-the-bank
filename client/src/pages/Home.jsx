@@ -1,16 +1,16 @@
+import Login from "./Login";
 
 const Home = () => {
 
     return (
         <>
-        <section className="hero">
-            <button className="loginButton">
-                Login
-            </button>
+        <section className="loginContainer">
+            <section className="buttonContainer">
 
-            <button className="signupButton">
-                Signup
-            </button>
+                <button className="loginButton" onClick={Login}>Login</button>
+                <button className="signupButton">Signup</button>
+
+            </section>
         </section>
         </>
     )
