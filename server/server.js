@@ -5,10 +5,19 @@ const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const methodOverride = require("method-override");
+const cors = require('cors');
+
 const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
+const path = require("path")
+
+app.use(cors({
+  origin: 'http://localhost:3001'
+}));
+
+app.use(express.static(path.join(__dirname, '../client/src')));
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
