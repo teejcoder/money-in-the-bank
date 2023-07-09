@@ -6,6 +6,8 @@ html {
 
 body {
   margin: 0;
+  overscroll-behavior: auto;
+  font-family: 'Roboto', sans-serif;
 }
 
 main {
@@ -213,8 +215,8 @@ button {
 
 /* NAV BAR */
 .navbar{
-  height: 100px;
-  border-bottom: 1px solid black;
+  height: 10vh;
+  box-shadow: 0px 9px 12px -3px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -223,9 +225,16 @@ button {
 
 
 .sidebar {
-  border-right: 1px solid black;
   width: 10%;
-  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-direction: column;
+  border-right: 0.5px solid lightgrey;
 }
 
 .sidebar > h2 {
@@ -275,3 +284,8 @@ button {
   border-radius: 25px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
+
+/* PROFILE PAGE */
+
+

@@ -1,10 +1,11 @@
+import { LuLogOut } from 'react-icons/lu';
 
 function Sidebar(){
 
     return (
         <>
         <section className="sidebar">
-            <h2>Sidebar</h2>
+            <LuLogOut size='40px'/>
         </section>
         </>
     )
