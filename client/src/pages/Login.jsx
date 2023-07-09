@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 
 const Login = ({ messages }) => {
 
@@ -33,7 +33,11 @@ const Login = ({ messages }) => {
               placeholder='Password'
             />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">Login</button>
+          <Link to="/signup">
+            <button className="btn-primary">Signup</button>
+          </Link>
+
         </form>
       </section>
     </section>

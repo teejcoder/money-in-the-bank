@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 // import { LuLogOut } from 'react-icons/lu';
 
@@ -19,6 +18,7 @@ function Bankcard() {
   return (
     <>
       <section className="bankcard">
+        
 
       </section>
     </>

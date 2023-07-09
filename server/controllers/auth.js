@@ -30,22 +30,26 @@ exports.authToken = (req,res) => {
 }
 
 // CREATE BASIQ USER
-exports.createBasiqUser = (req,res) => {
+exports.createBasiqUser = (req, res) => {
+  // const { email, phoneNumber, firstName, lastName } = req.body; // Assuming the data is sent in the request body
+
   const options = {
     method: 'POST',
     url: 'https://au-api.basiq.io/users',
-    headers: {accept: 'application/json', 
-      'basiq-version': '3.0', 
+    headers: {
+      accept: 'application/json',
+      'basiq-version': '3.0',
       'content-type': 'application/json',
       authorization: `${Authorization}`,
-  },
+    },
     data: {
-      email: 'moe@moemail.com',
-      mobile: '0412460636',
-      firstName: 'Moe',
-      lastName: 'Mosley'
-    }
+      email: User.email,
+      mobile: User.phoneNumber,
+      firstName: User.firstName,
+      lastName: User.lastName,
+    },
   };
+
   axios
     .request(options)
     .then(function (response) {
@@ -55,7 +59,8 @@ exports.createBasiqUser = (req,res) => {
     .catch(function (error) {
       console.error(error);
     });
-}
+};
+
 
 
 // exports.getConsents = (req,res) => {

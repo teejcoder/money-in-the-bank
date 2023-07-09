@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Signup = ({ messages }) => {
@@ -58,9 +59,12 @@ const Signup = ({ messages }) => {
             <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
           </div>
 
-          <div className="mb-3">
-            <button type="submit" className="btn btn-primary">Create User</button>
-          </div>
+
+          <button type="submit" className="btn btn-primary">Create User</button>
+          
+          <Link to="/login">
+            <button className="btn-primary">Login</button>
+          </Link>
 
         </form>
       </section>
