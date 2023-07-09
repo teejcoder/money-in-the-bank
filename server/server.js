@@ -6,39 +6,33 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const methodOverride = require("method-override");
 const cors = require('cors');
-
 const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
-const path = require("path")
+const path = require("path");
 
 app.use(cors({
   origin: 'http://localhost:3001'
 }));
 
-app.use(express.static(path.join(__dirname, '../client/src')));
-
-//Use .env file in config folder
+// Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
 // Passport config
 require("./config/passport")(passport);
 
-//Connect To Database
+// Connect To Database
 connectDB();
 
-//Static Folder
-app.use(express.static("public"));
-
-//Body Parsing
+// Body Parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//Logging
+// Logging
 app.use(logger("dev"));
 
-//Use forms for put / delete
+// Use forms for PUT / DELETE
 app.use(methodOverride("_method"));
 
 // Setup Sessions - stored in MongoDB
@@ -55,13 +49,21 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Use flash messages for errors, info, ect...
+// Use flash messages for errors, info, etc...
 app.use(flash());
 
-//Setup Routes For Which The Server Is Listening
+// Setup Routes for which the server is listening
 app.use("/", mainRoutes);
 
-//Server Running
+// Serve static files from the build directory
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+// Catch-all route for serving React app
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
+
+// Server Running
 app.listen(process.env.PORT, () => {
-  console.log(`Server is running on ${process.env.PORT}, you better catch it!`);
+  console.log(`Server is running on ${process.env.PORT}`);
 });
