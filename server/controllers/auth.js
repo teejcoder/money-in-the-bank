@@ -181,7 +181,6 @@ exports.getTransactions = (req, res) => {
 
 
 
-
 exports.getLogin = (req, res) => {
   if (req.user) {
     return res.redirect("/profile");
@@ -240,8 +239,8 @@ exports.getSignup = (req, res) => {
   if (req.user) {
     return res.redirect("/profile");
   }
-  res.render("signup", {
-    title: "Create Account",
+  res.json({
+    title: "Create Account"
   });
 };
 
