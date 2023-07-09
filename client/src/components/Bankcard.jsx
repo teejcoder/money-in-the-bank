@@ -16,15 +16,13 @@ function Bankcard() {
 //       });
 //   };
 
-//   return (
-//     <>
-//       <section className="sidebar">
-//         <a href="/" onClick={handleLogout}>
-//           <LuLogOut size='40px' color='red'/>
-//         </a>
-//       </section>
-//     </>
-//   );
+  return (
+    <>
+      <section className="bankcard">
+
+      </section>
+    </>
+  );
 }
 
 export default Bankcard;

@@ -84,6 +84,7 @@ textarea {
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
+  
 }
 
 button,
@@ -180,7 +181,7 @@ template {
   display: none;
 }
 
-/* LOGIN SIGNUP PAGE */
+/********************* LOGIN PAGE *********************/
 
 .loginContainer {
   height: 100vh;
@@ -201,7 +202,65 @@ template {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-/* BUTTONS */
+
+/********************* SIGN UP PAGE *********************/
+.signupContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signupForm {
+  width: 50%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  padding: 50px 0px;
+  
+  border-radius: 25px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+form {
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.btn-primary {
+  background-color: lightgreen;
+  width: 400px;
+}
+
+.form-control {
+  height: 50px;
+  width: 400px;
+  border: none;
+  outline: none;
+  border-bottom: 0.5px solid lightgrey;
+
+}
+.form-control:focus {
+  background-color: lavender;
+  border: none;
+  outline: none;
+}
+
+.mb-3{
+  margin: 20px;
+}
+
+.form-text {
+  color: gray;
+}
+
+
+/********************* BUTTONS *********************/
 button {
   width: 300px;
   height: 50px;
@@ -212,7 +271,7 @@ button {
 }
 
 
-/* NAVBAR */
+/********************* NAVBAR *********************/
 .navbar{
   height: 100px;
   width: 100%;
@@ -229,7 +288,8 @@ button {
 }
 
 
-/* SIDEBAR */
+/********************* SIDEBAR *********************/
+
 .sidebar {
   width: 10%;
 
@@ -250,7 +310,7 @@ button {
 
 
 
-/* LOGIN PAGE */
+/********************* LOGIN PAGE *********************/
 .loginContainer {
   height: 100vh;
   width: 100%;
@@ -270,26 +330,7 @@ button {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.signupContainer {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.signupForm {
-  width: 50%;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 25px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-
-/* PROFILE PAGE */
+/********************* PROFILE PAGE *********************/
 
 

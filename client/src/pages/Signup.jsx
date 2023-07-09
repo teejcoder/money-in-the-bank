@@ -24,6 +24,7 @@ const Signup = ({ messages }) => {
 
   return (
     <section className="signupContainer">
+      
       <section className="signupForm">
         {messages && messages.errors && messages.errors.map((el, index) => (
           <div key={index} className="alert alert-danger">{el.msg}</div>
@@ -32,34 +33,35 @@ const Signup = ({ messages }) => {
           <div key={index} className="alert alert-info">{el.msg}</div>
         ))}
 
+        <h1>Sign Up</h1>
+
         <form action="/signup" method="POST">
           <div className="mb-3">
-            <label htmlFor="firstName" className="form-label">First Name</label>
-            <input type="text" className="form-control" id="firstName" name="firstName" />
+            <input type="text" className="form-control" id="firstName" name="firstName" placeholder="First Name" />
           </div>
           <div className="mb-3">
-            <label htmlFor="lastName" className="form-label">Last Name</label>
-            <input type="text" className="form-control" id="lastName" name="lastName" />
+
+            <input type="text" className="form-control" id="lastName" name="lastName" placeholder="Last Name"/>
           </div>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email address</label>
-            <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" />
+            <input type="email" className="form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Email Address" />
             <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
           </div>
           <div className="mb-3">
-            <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-            <input type="tel" className="form-control" id="phoneNumber" name="phoneNumber" placeholder="+61 4XX XXX XXX" />
+            <input type="tel" className="form-control" id="phoneNumber" name="phoneNumber" placeholder="0412 345 678" />
             <div id="phoneNumber" className="form-text">We'll never share your number with anyone else.</div>
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input type="password" className="form-control" id="password" name="password" />
+            <input type="password" className="form-control" id="password" name="password" placeholder="Password" />
           </div>
           <div className="mb-3">
-            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-            <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" />
+            <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+
+          <div className="mb-3">
+            <button type="submit" className="btn btn-primary">Create User</button>
+          </div>
+
         </form>
       </section>
     </section>
