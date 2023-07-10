@@ -2,8 +2,6 @@ const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
 const axios = require("axios");
-const express = require("express");
-const app = express();
 
 
 // AUTH FLOW
@@ -51,14 +49,12 @@ exports.authFlow = (req,res) => {
       });
     })
     .then((response) => {
-      callback(null, response.data);
+      console.log(response.data);
     })
     .catch((error) => {
-      callback(error);
+      console.log(error);
     });
 };
-
-
 
 
 // CREATE AUTH TOKEN
@@ -117,29 +113,6 @@ exports.createBasiqUser = (req, res) => {
       console.error(error);
     });
 };
-
-
-
-// exports.getConsents = (req,res) => {
-//   const options = {
-//     method: 'GET',
-//     url: `https://au-api.basiq.io/users/${userId}/consents`,
-//     headers: {
-//       accept: 'application/json',
-//       authorization: `${Authorization}`,
-//     }
-//   };
-
-//   axios
-//     .request(options)
-//     .then(function (response) {
-//       console.log(response.data);
-//     })
-//     .catch(function (error) {
-//       console.error(error);
-//     });
-// }
-
 
 
 exports.createAuthLink = (req, res) => {
@@ -359,3 +332,27 @@ exports.postSignup = (req, res, next) => {
     }
   );
 };
+
+
+
+
+
+// exports.getConsents = (req,res) => {
+//   const options = {
+//     method: 'GET',
+//     url: `https://au-api.basiq.io/users/${userId}/consents`,
+//     headers: {
+//       accept: 'application/json',
+//       authorization: `${Authorization}`,
+//     }
+//   };
+
+//   axios
+//     .request(options)
+//     .then(function (response) {
+//       console.log(response.data);
+//     })
+//     .catch(function (error) {
+//       console.error(error);
+//     });
+// }
