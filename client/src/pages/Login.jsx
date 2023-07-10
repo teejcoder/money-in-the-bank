@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 const Login = ({ messages }) => {
+
+  // const history = useHistory();
+
+  // useEffect(() => {
+  //   // Check user's login status here
+  //   const isLoggedIn = /* Replace with your login status check logic */
+
+  //   if (isLoggedIn) {
+  //     history.push('/profile');
+  //   }
+  // }, []);
 
   return (
     <section className="loginContainer"

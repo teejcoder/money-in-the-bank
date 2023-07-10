@@ -13,7 +13,7 @@ exports.authFlow = (req,res) => {
         scope: "client",
         "basiq-version": "3.0",
         "content-type": "application/x-www-form-urlencoded",
-        authorization: process.env.API_KEY,
+        Authorization: process.env.API_KEY,
       },
     })
     .then((response) => {
@@ -24,7 +24,7 @@ exports.authFlow = (req,res) => {
           accept: "application/json",
           "basiq-version": "3.0",
           "content-type": "application/json",
-          authorization: `Bearer ${authToken}`,
+          Authorization: `Bearer ${authToken}`,
         },
         data: {
           email: User.email,
@@ -41,7 +41,7 @@ exports.authFlow = (req,res) => {
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          authorization: `Bearer ${authToken}`,
+          Authorization: `Bearer ${authToken}`,
         },
         data: {
           mobile: User.phoneNumber,
@@ -84,7 +84,6 @@ exports.authToken = (req,res) => {
 
 // CREATE BASIQ USER
 exports.createBasiqUser = (req, res) => {
-  // const { email, phoneNumber, firstName, lastName } = req.body; // Assuming the data is sent in the request body
 
   const options = {
     method: 'POST',

@@ -1,19 +1,24 @@
 import { useState } from 'react';
-// import { LuLogOut } from 'react-icons/lu';
 
 function Bankcard() {
   const [auth, setAuth] = useState({});
 
-  const handleAuth = () => {
-    fetch("/authFlow")
-      .then((response) => response.json())
-      .then((data) => {
-        setAuth(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+const handleAuth = () => {
+  fetch("/authFlow")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Server returned status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      setAuth(data);
+    })
+    .catch((error, response) => {
+      console.log(error);
+      console.log("Response:", response);
+    });
+};;
 
   return (
     <>
