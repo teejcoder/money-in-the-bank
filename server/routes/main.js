@@ -15,6 +15,7 @@ router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
 
+router.get("/authFlow", authController.authFlow)
 
 router.get("/authToken", authController.authToken)
 

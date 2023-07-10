@@ -1,28 +1,29 @@
-import { useState } from 'react';
-// import { LuLogOut } from 'react-icons/lu';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 
 function Bankcard() {
-//   const [logoutStatus, setLogoutStatus] = useState(false);
+  const handleAuth = () => {
+    axios
+      .get("/authFlow")
+      .then((response) => {
+        console.log(response.data);
+        // Handle the response as needed
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  
 
-//   const handleLogout = () => {
-//     fetch("/logout")
-//       .then((response) => response.json())
-//       .then((data) => {
-//         setLogoutStatus(data.logout);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   };
 
   return (
     <>
       <section className="bankcard">
-
         <h2>It looks a bit empty here..</h2>
-        
-        <button className='btn btn-primary'>Connect Bank</button>
-
+        <button onClick={handleAuth} className="btn btn-primary">
+          Connect Bank
+        </button>
       </section>
     </>
   );

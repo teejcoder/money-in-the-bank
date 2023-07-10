@@ -12,9 +12,13 @@ const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const path = require("path");
 
-app.use(cors({
-  origin: 'http://localhost:3001'
-}));
+const corsOptions = {
+  origin: 'http://localhost:3001',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization, basiq-version',
+};
+
+// CORS middleware should be placed here
+// app.use(cors(corsOptions));
 
 // Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });

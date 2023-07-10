@@ -2,6 +2,63 @@ const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
 const axios = require("axios");
+const express = require("express");
+const app = express();
+
+
+// AUTH FLOW
+exports.authFlow = (req,res) => {
+  axios
+    .post("https://au-api.basiq.io/token", {
+      headers: {
+        accept: "application/json",
+        scope: "client",
+        "basiq-version": "3.0",
+        "content-type": "application/x-www-form-urlencoded",
+        authorization: process.env.API_KEY,
+      },
+    })
+    .then((response) => {
+      const authToken = response.data.access_token;
+      // Create Basiq User
+      return axios.post("https://au-api.basiq.io/users", {
+        headers: {
+          accept: "application/json",
+          "basiq-version": "3.0",
+          "content-type": "application/json",
+          authorization: `Bearer ${authToken}`,
+        },
+        data: {
+          email: User.email,
+          mobile: User.phoneNumber,
+          firstName: User.firstName,
+          lastName: User.lastName,
+        },
+      });
+    })
+    .then((response) => {
+      const userId = response.data.id;
+      // Create Auth Link
+      return axios.post(`https://au-api.basiq.io/users/${userId}/auth_link`, {
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          authorization: `Bearer ${authToken}`,
+        },
+        data: {
+          mobile: User.phoneNumber,
+        },
+      });
+    })
+    .then((response) => {
+      callback(null, response.data);
+    })
+    .catch((error) => {
+      callback(error);
+    });
+};
+
+
 
 
 // CREATE AUTH TOKEN
