@@ -15,11 +15,7 @@ router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
 
-router.post("/authFlow", authController.authFlow)
-
-
-
-
+// router.post("/authFlow", authController.authFlow)
 
 router.get("/getBasiqUser", authController.getBasiqUser)
 
