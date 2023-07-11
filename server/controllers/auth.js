@@ -3,7 +3,6 @@ const validator = require("validator");
 const User = require("../models/User");
 const axios = require("axios");
 
-
 // AUTH FLOW
 exports.authFlow = (req,res) => {
   axios
@@ -48,85 +47,6 @@ exports.authFlow = (req,res) => {
         },
       });
     })
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
-
-// CREATE AUTH TOKEN
-exports.authToken = (req,res) => {
-  const options = {
-    method: 'POST',
-    url: 'https://au-api.basiq.io/token',
-    headers: {
-      accept: 'application/json',
-      scope: 'client',
-      'basiq-version': '3.0',
-      'content-type': 'application/x-www-form-urlencoded',
-      authorization: process.env.API_KEY
-    }
-  };
-  axios
-    .request(options)
-    .then(function (response) {
-      Authorization = 'Bearer ' + response.data.access_token;
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-
-}
-
-// CREATE BASIQ USER
-exports.createBasiqUser = (req, res) => {
-
-  const options = {
-    method: 'POST',
-    url: 'https://au-api.basiq.io/users',
-    headers: {
-      accept: 'application/json',
-      'basiq-version': '3.0',
-      'content-type': 'application/json',
-      authorization: `${Authorization}`,
-    },
-    data: {
-      email: User.email,
-      mobile: User.phoneNumber,
-      firstName: User.firstName,
-      lastName: User.lastName,
-    },
-  };
-
-  axios
-    .request(options)
-    .then(function (response) {
-      userId = response.data.id;
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-};
-
-
-exports.createAuthLink = (req, res) => {
-  const options = {
-    method: 'POST',
-    url: `https://au-api.basiq.io/users/${userId}/auth_link`,
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      authorization: `${Authorization}`,
-    },
-    data: {mobile: '+61412460636'}
-  };
-
-  axios
     .request(options)
     .then(function (response) {
       console.log(response.data);
@@ -135,13 +55,10 @@ exports.createAuthLink = (req, res) => {
     .catch(function (error) {
       console.error(error);
     });
-}
-
-
+};
 
 
 // GET BASIQ USER
-
 exports.getBasiqUser = (req,res) => {
   const options = {
     method: 'GET',
@@ -210,8 +127,6 @@ exports.getTransactions = (req, res) => {
     });
 
 }
-
-
 
 
 
@@ -355,3 +270,84 @@ exports.postSignup = (req, res, next) => {
 //       console.error(error);
 //     });
 // }
+
+
+// CREATE AUTH TOKEN
+exports.authToken = (req,res) => {
+  const options = {
+    method: 'POST',
+    url: 'https://au-api.basiq.io/token',
+    headers: {
+      accept: 'application/json',
+      scope: 'client',
+      'basiq-version': '3.0',
+      'content-type': 'application/x-www-form-urlencoded',
+      Authorization: process.env.API_KEY
+    }
+  };
+  axios
+    .request(options)
+    .then(function (response) {
+      Authorization = 'Bearer ' + response.data.access_token;
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
+
+// CREATE BASIQ USER
+exports.createBasiqUser = (req, res) => {
+  const { user } = req; // Assuming the user object is available in the request after authentication
+
+  const options = {
+    method: 'POST',
+    url: 'https://au-api.basiq.io/users',
+    headers: {
+      accept: 'application/json',
+      'basiq-version': '3.0',
+      'content-type': 'application/json',
+      Authorization: `${Authorization}`,
+    },
+    data: {
+      email: user.email,
+      mobile: user.phoneNumber,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    },
+  };
+
+  axios
+    .request(options)
+    .then(function (response) {
+      userId = response.data.id;
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
+// CREATE AUTH LINK
+exports.createAuthLink = (req, res) => {
+  const options = {
+    method: 'POST',
+    url: `https://au-api.basiq.io/users/${userId}/auth_link`,
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      Authorization: `${Authorization}`,
+    },
+    data: {mobile: '+61412460636'}
+  };
+
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+      res.redirect(response.data.links.public)
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}

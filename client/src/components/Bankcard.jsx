@@ -3,22 +3,17 @@ import { useState } from 'react';
 function Bankcard() {
   const [auth, setAuth] = useState({});
 
-const handleAuth = () => {
-  fetch("/authFlow")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Server returned status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      setAuth(data);
-    })
-    .catch((error, response) => {
-      console.log(error);
-      console.log("Response:", response);
-    });
-};;
+  const handleAuth = () => {
+    fetch("/authFlow")
+      .then((response) => response.json())
+      .then((data) => {
+        setAuth(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <>
