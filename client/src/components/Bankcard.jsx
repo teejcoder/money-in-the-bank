@@ -28,16 +28,16 @@ function Bankcard() {
       });
   };
 
-  const createAuthLink = () => {
-    fetch("/createAuthLink")
-      .then((response) => response)
-      .then((response) => {
-        redirect(response.data.links.public)
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+const createAuthLink = () => {
+  fetch("/createAuthLink")
+    .then((response) => response.json()) // Parse the response as JSON
+    .then((data) => {
+      console.log(data); // Log the parsed response data
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
 
 
   return (
