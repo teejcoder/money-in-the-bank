@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -12,6 +13,12 @@ const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const path = require("path");
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 app.use(cors({
   origin: 'http://localhost:3001'
 }));
@@ -24,10 +31,6 @@ require("./config/passport")(passport);
 
 // Connect To Database
 connectDB();
-
-// Body Parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 // Logging
 app.use(logger("dev"));
