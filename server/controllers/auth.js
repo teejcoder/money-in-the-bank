@@ -85,12 +85,19 @@ exports.createAuthLink = cors(corsOptions, (req, res) => {
   axios
     .request(options)
     .then(function (response) {
+      res.json(response)
       res.redirect(response.data.links.public);
     })
     .catch(function (error) {
       console.error(error);
     });
 });
+
+
+
+
+
+
 
 
 // GET BASIQ USER

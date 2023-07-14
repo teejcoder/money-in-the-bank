@@ -28,7 +28,7 @@ function Bankcard() {
   };
 
   const createAuthLink = () => {
-    fetch("http://localhost:3000/createAuthLink")
+    fetch("http://localhost:3001/createAuthLink")
       .then((response) => response.json())
       .then((data) => {
         setAuthLinkData(data);
