@@ -7,7 +7,7 @@ let Authorization; // Define Authorization variable
 let userId; // Define userId variable
 
 // CREATE AUTH TOKEN
-exports.authToken = (req, res) => {
+exports.authToken = (req,res) => {
   const options = {
     method: 'POST',
     url: 'https://au-api.basiq.io/token',
@@ -28,7 +28,7 @@ exports.authToken = (req, res) => {
     .catch(function (error) {
       console.error(error);
     });
-};
+}
 
 // CREATE BASIQ USER
 exports.createBasiqUser = (req, res) => {
@@ -63,41 +63,34 @@ exports.createBasiqUser = (req, res) => {
 };
 
 // CREATE AUTH LINK
-const cors = require('cors');
+// const cors = require('cors');
 
-const corsOptions = {
-  origin: 'http://localhost:3001', // Replace with your front-end URL
-  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
-exports.createAuthLink = cors(corsOptions, (req, res) => {
+// const corsOptions = {
+//   origin: 'http://localhost:3001', // Replace with your front-end URL
+//   optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
+// cors(corsOptions,
+exports.createAuthLink =  (req, res) => {
   const options = {
     method: 'POST',
     url: `https://au-api.basiq.io/users/${userId}/auth_link`,
     headers: {
       accept: 'application/json',
-      'basiq-version': '3.0',
       'content-type': 'application/json',
       Authorization: `${Authorization}`,
     },
-    data: { mobile: req.user.phoneNumber } // Use req.user.phoneNumber instead of User.phoneNumber
+    data: {mobile: User.phoneNumber}
   };
   axios
     .request(options)
     .then(function (response) {
-      res.json(response)
-      res.redirect(response.data.links.public);
+      console.log(response.data);
+      // res.redirect(response.data.links.public)
     })
     .catch(function (error) {
       console.error(error);
     });
-});
-
-
-
-
-
-
+};
 
 
 // GET BASIQ USER

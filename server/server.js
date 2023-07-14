@@ -10,9 +10,10 @@ const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
+const path = require("path");
 
 app.use(cors({
-  origin: 'http://localhost:3001'
+  origin: 'http://localhost:3000'
 }));
 
 // Use .env file in config folder
@@ -23,9 +24,6 @@ require("./config/passport")(passport);
 
 // Connect To Database
 connectDB();
-
-//Static Folder
-app.use(express.static("public"));
 
 // Body Parsing
 app.use(express.urlencoded({ extended: true }));
@@ -57,6 +55,13 @@ app.use(flash());
 // Setup Routes for which the server is listening
 app.use("/", mainRoutes);
 
+// Serve static files from the build directory
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+// Catch-all route for serving React app
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
 
 // Server Running
 app.listen(process.env.PORT, () => {
