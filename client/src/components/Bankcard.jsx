@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { redirect } from 'react-router-dom';
 
 function Bankcard() {
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState();
+  const [authLink, setAuthLink] = useState({});
 
   const authToken = () => {
     fetch("/authToken")
@@ -27,16 +29,17 @@ function Bankcard() {
       });
   };
 
-const createAuthLink = () => {
+  const createAuthLink = () =>
+
   fetch("/createAuthLink")
-    .then(response => response.json()) // Parse the response as JSON
+    .then(response => response.json()) 
     .then(data => {
-      console.log(data); // Log the parsed response data
+      console.log(data); 
     })
     .catch((error) => {
       console.error(error);
     });
-};
+
 
 
   return (

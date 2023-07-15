@@ -1,6 +1,5 @@
 {
   "name": "fullstack-template",
-    "proxy": "http://localhost:3000",
   "version": "1.0.0",
   "description": "Starter template for future projects",
   "main": "server.js",
