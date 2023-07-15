@@ -197,7 +197,7 @@ exports.postLogin = (req, res, next) => {
       req.flash("errors", info);
       return res.redirect("/login");
     }
-    req.logIn(user, (err) => {
+    req.login(user, (err) => {
       if (err) {
         return next(err);
       }

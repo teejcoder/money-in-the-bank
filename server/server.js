@@ -13,7 +13,7 @@ const mainRoutes = require("./routes/main");
 const path = require("path");
 
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: 'http://localhost:3001'
 }));
 
 // Use .env file in config folder

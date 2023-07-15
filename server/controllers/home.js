@@ -1,15 +1,15 @@
- module.exports = {
-  getIndex: (req, res) => {
-    // Instead of rendering a view, you can send a JSON response or handle the route differently
-    res.json({ message: "Welcome to the index page" });
-  },
-  getProfile: async (req, res) => { 
-    try {
-      // Instead of rendering a view, you can send a JSON response or handle the route differently
-      res.json({ user: req.user });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ error: "An error occurred" });
-    }
-  },
+exports.getIndex = (req, res) => {
+  if (req.user) {
+    return res.redirect("/profile");
+  }
+  res.render("Home", {
+    title: "Home",
+  });
+};
+
+exports.getProfile = (req, res) => {
+  res.render("Profile", {
+    title: "Profile",
+    user: req.user // Assuming you need to pass the user data to the profile template
+  });
 };
