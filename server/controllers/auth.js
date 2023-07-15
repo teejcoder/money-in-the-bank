@@ -85,7 +85,6 @@ exports.createAuthLink =  (req, res) => {
     .request(options)
     .then(function (response) {
       console.log(response.data);
-      // res.redirect(response.data.links.public)
     })
     .catch(function (error) {
       console.error(error);
