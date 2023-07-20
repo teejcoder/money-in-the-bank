@@ -6,7 +6,7 @@ const axios = require("axios");
 let Authorization; // Define Authorization variable
 let userId; // Define userId variable
 
-// CRžATE AUTH TOKEN
+// CREATE AUTH TOKEN
 exports.authToken = (req,res) => {
   const options = {
     method: 'POST',
@@ -32,12 +32,8 @@ exports.authToken = (req,res) => {
 
 // CREATE BASIQ USER
 exports.createBasiqUser = (req, res) => {
-  console.log("req.user:", req.user);
+  const { user } = req; // Assuming the user object is available in the request after authentication
 
-  const user = User.find({ email: req.user.email, mobile: req.user.mobile, firstName: req.user.firstName, lastName: req.user.lastName })
-  
-  console.log("user:", user); 
-  
   const options = {
     method: 'POST',
     url: 'https://au-api.basiq.io/users',
@@ -50,7 +46,6 @@ exports.createBasiqUser = (req, res) => {
     data: {
       email: user.email,
       mobile: user.phoneNumber,
-      basiqUserId: user.basiqUserId,
       firstName: user.firstName,
       lastName: user.lastName,
     },
@@ -68,13 +63,6 @@ exports.createBasiqUser = (req, res) => {
 };
 
 // CREATE AUTH LINK
-// const cors = require('cors');
-
-// const corsOptions = {
-//   origin: 'http://localhost:3001', // Replace with your front-end URL
-//   optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
-// };
-// cors(corsOptions,
 exports.createAuthLink =  (req, res) => {
   const options = {
     method: 'POST',
@@ -89,6 +77,7 @@ exports.createAuthLink =  (req, res) => {
   axios
     .request(options)
     .then(function (response) {
+      bankAuthLink = response.data.links.public
       console.log(response.data);
     })
     .catch(function (error) {
