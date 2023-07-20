@@ -5,6 +5,18 @@ function Bankcard() {
   const [auth, setAuth] = useState();
   const [authLink, setAuthLink] = useState({});
 
+  // USE THIS USEEFFECT HOOK TO GET AUTHTOKEN DATA & MAKE USER?
+  // useEffect(() => {
+  //   fetch("/getAuthToken").then(
+  //     response => response.json()
+  //   ).then(
+  //     data => {
+  //       setUser(data)
+  //       console.log(data)
+  //     }
+  //   )
+  // }, [])
+
   const authToken = () => {
     fetch("/authToken")
       .then(response => response)
