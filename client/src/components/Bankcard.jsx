@@ -18,6 +18,7 @@ function Bankcard() {
   // }, [])
 
   const authToken = () => {
+
     fetch("/authToken")
       .then(response => response)
       .then(data => {
@@ -41,9 +42,8 @@ function Bankcard() {
       });
   };
 
-  const createAuthLink = () =>
-
-  fetch("/createAuthLink")
+  const createAuthLink = () => {
+    fetch("/createAuthLink")
     .then(response => response.json()) 
     .then(data => {
       console.log(data); 
@@ -51,6 +51,21 @@ function Bankcard() {
     .catch((error) => {
       console.error(error);
     });
+
+  }
+
+
+    const getBasiqUser = (res, req) => {
+      fetch("/getBasiqUser")
+      .then(response => response.json()) 
+      .then(data => {
+        console.log(data); 
+        console.log(res)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
 
 
 
@@ -61,6 +76,7 @@ function Bankcard() {
         <h2>It looks a bit empty here..</h2>
         
         <button onClick={authToken} className='btn btn-primary'>Connect Bank</button>
+        <button onClick={getBasiqUser} className='btn btn-primary'>get basiq user</button>
         <button onClick={createBasiqUser} className='btn btn-primary'>Create basiq user</button>
         <button onClick={createAuthLink} className='btn btn-primary'>Create auth link</button>
 

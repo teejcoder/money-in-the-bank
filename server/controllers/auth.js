@@ -6,7 +6,7 @@ const axios = require("axios");
 let Authorization; // Define Authorization variable
 let userId; // Define userId variable
 
-// CREATE AUTH TOKEN
+// CRžATE AUTH TOKEN
 exports.authToken = (req,res) => {
   const options = {
     method: 'POST',
@@ -32,8 +32,12 @@ exports.authToken = (req,res) => {
 
 // CREATE BASIQ USER
 exports.createBasiqUser = (req, res) => {
-  const { user } = req; // Assuming the user object is available in the request after authentication
+  console.log("req.user:", req.user);
 
+  const user = User.find({ email: req.user.email, mobile: req.user.mobile, firstName: req.user.firstName, lastName: req.user.lastName })
+  
+  console.log("user:", user); 
+  
   const options = {
     method: 'POST',
     url: 'https://au-api.basiq.io/users',
@@ -46,6 +50,7 @@ exports.createBasiqUser = (req, res) => {
     data: {
       email: user.email,
       mobile: user.phoneNumber,
+      basiqUserId: user.basiqUserId,
       firstName: user.firstName,
       lastName: user.lastName,
     },
