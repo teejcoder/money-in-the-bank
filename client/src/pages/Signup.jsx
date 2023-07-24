@@ -3,13 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const Signup = ({ messages }) => {
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber:"",
-    password: "",
-  });
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     fetch("/signup").then(
@@ -65,7 +59,6 @@ const Signup = ({ messages }) => {
           <div className="mb-3">
             <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
           </div>
-
 
           <button type="submit" className="btn btn-primary">Create User</button>
           
