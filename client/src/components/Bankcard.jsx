@@ -1,24 +1,33 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { redirect } from 'react-router-dom';
+
+// import React, { useState, useEffect } from 'react';
+
+// function DataFetching() {
+//   const [data, setData] = useState([]);
+
+//   useEffect(() => {
+//     // Fetch data from an API
+//     fetch('https://api.example.com/data')
+//       .then((response) => response.json())
+//       .then((data) => setData(data));
+//   }, []); // Empty dependency array ensures the effect runs only once (on mount)
+
+//   return (
+//     <div>
+//       <ul>
+//         {data.map((item) => (
+//           <li key={item.id}>{item.name}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
 
 function Bankcard() {
   const [auth, setAuth] = useState();
-  const [authLink, setAuthLink] = useState({});
-
-  // USE THIS USEEFFECT HOOK TO GET AUTHTOKEN DATA & MAKE USER?
-  // useEffect(() => {
-  //   fetch("/getAuthToken").then(
-  //     response => response.json()
-  //   ).then(
-  //     data => {
-  //       setUser(data)
-  //       console.log(data)
-  //     }
-  //   )
-  // }, [])
 
   const authToken = () => {
-
     fetch("/authToken")
       .then(response => response)
       .then(data => {
@@ -34,7 +43,7 @@ function Bankcard() {
     fetch("/createBasiqUser")
       .then(response => response.json())
       .then(data => {
-        setAuth(data);
+        // setAuth(data);
         console.log(data);
       })
       .catch((error) => {
@@ -54,19 +63,27 @@ function Bankcard() {
 
   }
 
-
-    const getBasiqUser = (res, req) => {
+    const getBasiqUser = () => {
       fetch("/getBasiqUser")
       .then(response => response.json()) 
       .then(data => {
         console.log(data); 
-        console.log(res)
       })
       .catch((error) => {
         console.error(error);
       });
     }
-
+  
+    const getAccounts = async () => {
+      fetch("/getAccounts")
+      .then(response => response)
+      .then(data => {
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
 
 
   return (
@@ -76,9 +93,10 @@ function Bankcard() {
         <h2>It looks a bit empty here..</h2>
         
         <button onClick={authToken} className='btn btn-primary'>Connect Bank</button>
-        <button onClick={getBasiqUser} className='btn btn-primary'>get basiq user</button>
         <button onClick={createBasiqUser} className='btn btn-primary'>Create basiq user</button>
         <button onClick={createAuthLink} className='btn btn-primary'>Create auth link</button>
+        <button onClick={getBasiqUser} className='btn btn-primary'>get basiq user</button>
+        <button onClick={getAccounts} className='btn btn-primary'>get accounts</button>
 
       </section>
     </>
