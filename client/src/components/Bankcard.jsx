@@ -81,30 +81,3 @@ function Bankcard() {
 }
 
 export default Bankcard;
-
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-
-// function DataFetching() {
-//   const [data, setData] = useState([]);
-
-//   useEffect(() => {
-//     // Fetch data from an API
-//     fetch('https://api.example.com/data')
-//       .then((response) => response.json())
-//       .then((data) => setData(data));
-//   }, []); // Empty dependency array ensures the effect runs only once (on mount)
-
-//   return (
-//     <div>
-//       <ul>
-//         {data.map((item) => (
-//           <li key={item.id}>{item.name}</li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }

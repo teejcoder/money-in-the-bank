@@ -10,6 +10,7 @@ const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
+const apiRoutes = require("./routes/api");
 const path = require("path");
 
 app.use(cors({
@@ -54,6 +55,7 @@ app.use(flash());
 
 // Setup Routes for which the server is listening
 app.use("/", mainRoutes);
+app.use("/api", apiRoutes);
 
 // Serve static files from the build directory
 app.use(express.static(path.join(__dirname, "../client/build")));

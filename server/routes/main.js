@@ -15,19 +15,4 @@ router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
 
-// router.post("/authFlow", authController.authFlow)
-
-router.get("/getBasiqUser", authController.getBasiqUser)
-
-router.get("/getAccounts", authController.getAccounts)
-router.get("/getTransactions", authController.getTransactions)
-
-
-router.get("/authToken", authController.authToken)
-router.get("/createBasiqUser", authController.createBasiqUser)
-
-// router.get("/getConsents", authController.getConsents)
-
-router.get("/createAuthLink", authController.createAuthLink)
-
 module.exports = router;
