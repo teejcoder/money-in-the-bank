@@ -1,6 +1,5 @@
 const axios = require("axios");
 const express = require("express");
-const app = express();
 
 let Authorization; // Define Authorization variable
 let userId; // Define userId variable
@@ -22,7 +21,7 @@ exports.authToken = (req,res) => {
     .request(options)
     .then(function (response) {
       Authorization = 'Bearer ' + response.data.access_token;
-      console.log(response.data);
+      console.log(data);
     })
     .catch(function (error) {
       console.error(error);
