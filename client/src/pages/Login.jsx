@@ -3,17 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 
 const Login = ({ messages }) => {
 
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   // Check user's login status here
-  //   const isLoggedIn = /* Replace with your login status check logic */
-
-  //   if (isLoggedIn) {
-  //     history.push('/profile');
-  //   }
-  // }, []);
-
   return (
     <section className="loginContainer"
     style={{

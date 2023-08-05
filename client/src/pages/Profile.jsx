@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar"
 import Bankcard from "../components/Bankcard";
 
 function Profile() {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState();
 
   useEffect(() => {
     fetch("/profile")

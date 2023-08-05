@@ -1,12 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import useNavigate from react-router-dom
 
 function Bankcard() {
   const [auth, setAuth] = useState();
-  const [render, setRender] = useState(false);
 
-  const authToken = () => {
+  const authToken = async () => {
     fetch("/authToken")
       .then(response => response)
       .then(data => {
@@ -26,10 +24,8 @@ function Bankcard() {
         <h2>It looks a bit empty here..</h2>
         
         Connect Bank
-        <Link>
         <button onClick={authToken} className='btn btn-primary'>Connect Bank</button>
-        </Link>
-        
+
       </section>
     </>
   );
