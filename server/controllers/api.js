@@ -1,7 +1,5 @@
 const axios = require("axios");
 
-let Authorization; // Define Authorization variable
-let userId; // Define userId variable
 
 // CREATE AUTH TOKEN
 exports.authToken = (req,res) => {
