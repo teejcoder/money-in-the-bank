@@ -3,8 +3,9 @@ import AuthToken from './AuthToken';
 
 function Bankcard() {
 
-  function handleAuthToken(){
-    return fetch({AuthToken})
+  async function handleAuthToken(){
+    
+    await fetch("/api/authToken")
   }
 
   return (

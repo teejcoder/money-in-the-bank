@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
 export default function AuthToken() {
-    const [authToken, setAuthToken] = useState();
+    const [authTokenLink, setAuthTokenLink] = useState({});
 
     useEffect(() => {
-      fetch("/api/authToken")
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          setAuthToken(data);
-        });
+      fetch('/api/authToken')
+        .then(res => {
+        setAuthTokenLink(res.data)
+      })
     }, []);
   return (
     <div>AuthToken</div>

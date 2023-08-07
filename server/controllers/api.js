@@ -1,6 +1,5 @@
 const axios = require("axios");
 
-
 // CREATE AUTH TOKEN
 exports.authToken = (req,res) => {
   const options = {
@@ -18,7 +17,6 @@ exports.authToken = (req,res) => {
     .request(options)
     .then(function (response) {
       Authorization = 'Bearer ' + response.data.access_token;
-      console.log(data);
     })
     .catch(function (error) {
       console.error(error);
