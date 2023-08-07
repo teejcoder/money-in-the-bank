@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header"
 import Sidebar from "../components/Sidebar"
 import Bankcard from "../components/Bankcard";
 
 function Profile() {
-  const [profile, setProfile] = useState();
+
 
   useEffect(() => {
     fetch("/profile")
-      .then(response => response.json())
-      .then(data => {
-        setProfile(data);
-      });
   }, []);
 
   return (

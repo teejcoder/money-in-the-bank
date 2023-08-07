@@ -27,7 +27,6 @@ exports.authToken = (req,res) => {
 
 // CREATE BASIQ USER
 exports.createBasiqUser = (req, res) => {
-  const { user } = req; // Assuming the user object is available in the request after authentication
 
   const options = {
     method: 'POST',
