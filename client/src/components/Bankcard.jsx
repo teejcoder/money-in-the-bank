@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import AuthToken from './AuthToken';
+import React from 'react'
+import AuthToken from './AuthToken'
 
 function Bankcard() {
 
-  async function handleAuthToken(){
-    
-    await fetch("/api/authToken")
-  }
 
   return (
     <>
@@ -14,7 +10,7 @@ function Bankcard() {
 
         <h2>It looks a bit empty here..</h2>
 
-        <button className='btn btn-primary' onClick={handleAuthToken}>Connect Bank</button>
+        <AuthToken />
 
       </section>
     </>

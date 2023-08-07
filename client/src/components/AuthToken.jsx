@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react'
 
-export default function AuthToken() {
-    const [authTokenLink, setAuthTokenLink] = useState({});
+const AuthToken = () => {
+  const [token, setToken] = useState({})
 
-    useEffect(() => {
-      fetch('/api/authToken')
-        .then(res => {
-        setAuthTokenLink(res.data)
-      })
-    }, []);
+  useEffect(() =>{
+    const url = "http://localhost:3000/api/authToken"
+    
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+  fetchData();
+  
+  }, [])
+  
   return (
-    <div>AuthToken</div>
+    <div>
+      <button>connect bank</button>
+    </div>
   )
-
 }
+
+export default AuthToken
