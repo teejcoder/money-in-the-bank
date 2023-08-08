@@ -17,6 +17,7 @@ exports.authToken = (req,res) => {
     .request(options)
     .then(function (response) {
       Authorization = 'Bearer ' + response.data.access_token;
+      console.log(response)
     })
     .catch(function (error) {
       console.error(error);

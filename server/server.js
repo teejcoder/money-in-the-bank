@@ -57,14 +57,6 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/api", apiRoutes);
 
-// Serve static files from the build directory
-app.use(express.static(path.join(__dirname, "../client/build")));
-
-// Catch-all route for serving React app
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-});
-
 // Server Running
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on ${process.env.PORT}`);
