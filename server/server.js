@@ -11,7 +11,6 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const apiRoutes = require("./routes/api");
-const path = require("path");
 
 app.use(cors({
   origin: 'http://localhost:3001'

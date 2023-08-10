@@ -5,7 +5,6 @@ import Bankcard from "../components/Bankcard";
 
 function Profile() {
 
-
   useEffect(() => {
     fetch("/profile")
   }, []);
