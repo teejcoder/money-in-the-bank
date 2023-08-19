@@ -6,7 +6,7 @@ const AuthToken = () => {
     fetch("http://localhost:3000/api/authToken")
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network response failed');
         }
         return response.json(); 
       })
