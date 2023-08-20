@@ -6,7 +6,6 @@ export default function ConnectBank() {
     useEffect(() => {
       // Fetch data
       axios.get('http://localhost:3000/api/createBasiqUser') // Update the URL
-  
         .then(response => {
           console.log(response.data);
         })

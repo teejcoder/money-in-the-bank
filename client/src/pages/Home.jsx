@@ -16,6 +16,7 @@ function Home() {
     >
 
       <section className="buttonContainer">
+        <h1>Money in the Bank</h1>
         <Link to="/login">
         <button className="loginButton">Login</button>
         </Link>

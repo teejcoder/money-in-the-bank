@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ConnectBank from './ConnectBank';
 
-function Bankcard() {
+function Bankcard({children}) {
   const [showAuthToken, setShowAuthToken] = useState(false);
 
   useEffect(() => {
@@ -31,10 +31,10 @@ function Bankcard() {
       <h2>It looks a bit empty here..</h2>
       <div>
         <button onClick={handleClick}>
-          Connect Bank by clicking this button
+          Connect Bank
         </button>
       </div>
-      {showAuthToken && <ConnectBank />}
+
     </section>
   );
 }
