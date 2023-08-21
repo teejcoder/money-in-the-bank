@@ -4,7 +4,6 @@ const user = require('../models/User')
 let Authorization;
 let userId;
 
-
 // CREATE AUTH TOKEN
 exports.authToken = async (req, res) => {
   try {
