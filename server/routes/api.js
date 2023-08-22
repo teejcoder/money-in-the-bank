@@ -3,7 +3,9 @@ const router = express.Router();
 const apiController = require("../controllers/api");
 
 router.get("/authToken", apiController.authToken)
-router.get("/createBasiqUser", apiController.createBasiqUser)
+
+router.post("/createBasiqUser", apiController.createBasiqUser)
+
 router.get("/createAuthLink", apiController.createAuthLink)
 
 router.get("/getTransactions", apiController.getTransactions)
