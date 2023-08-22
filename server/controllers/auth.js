@@ -91,6 +91,7 @@ exports.postSignup = (req, res, next) => {
     lastName: req.body.lastName,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
+    basiqUserId: req.body.basiqUserId,
     password: req.body.password,
   });
 
