@@ -34,7 +34,7 @@ exports.authToken = async (req, res) => {
 // CREATE BASIQ USER
 exports.createBasiqUser = async (req, res) => {
   try {
-    const { email, mobileNumber, firstName, lastName } = req.body;
+    const { email, phoneNumber, firstName, lastName } = req.body;
 
     const options = {
       method: 'POST',
@@ -47,7 +47,7 @@ exports.createBasiqUser = async (req, res) => {
       },
       data: {
         email: email,
-        mobile: mobileNumber,
+        mobile: phoneNumber,
         firstName: firstName,
         lastName: lastName,
       },
