@@ -94,26 +94,26 @@ exports.createAuthLink = async (req, res) => {
 };
 
 // GET BASIQ USER
-exports.getBasiqUser = async (req, res) => {
-  try {
-    const options = {
-      method: 'GET',
-      url: `https://au-api.basiq.io/users/${basiqUserId}`,
-      headers: {
-        accept: 'application/json',
-        Authorization: `${authToken}`,
-      }
-    };
+// exports.getBasiqUser = async (req, res) => {
+//   try {
+//     const options = {
+//       method: 'GET',
+//       url: `https://au-api.basiq.io/users/${basiqUserId}`,
+//       headers: {
+//         accept: 'application/json',
+//         Authorization: `${authToken}`,
+//       }
+//     };
     
-    const response = await axios.request(options);
-    console.log(response.data);
+//     const response = await axios.request(options);
+//     console.log(response.data);
 
-    res.status(200).json(response.data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error fetching Basiq user' });
-  }
-};
+//     res.status(200).json(response.data);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Error fetching Basiq user' });
+//   }
+// };
 
 
 
