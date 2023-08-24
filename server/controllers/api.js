@@ -1,8 +1,9 @@
 const axios = require("axios");
+const user = require("../models/User")
 
-let Authorization;
 let authToken;
-let userId;
+let basiqUserId;
+let bankAuthLink;
 
 // CREATE AUTH TOKEN
 exports.authToken = async (req, res) => {
@@ -20,7 +21,7 @@ exports.authToken = async (req, res) => {
     };
 
     const response = await axios.request(options);
-    const authToken = 'Bearer ' + response.data.access_token;
+    authToken = 'Bearer ' + response.data.access_token;
 
     console.log(response);
 
@@ -34,7 +35,7 @@ exports.authToken = async (req, res) => {
 // CREATE BASIQ USER
 exports.createBasiqUser = async (req, res) => {
   try {
-    const { email, phoneNumber, firstName, lastName } = req.body;
+    // const { email, phoneNumber, firstName, lastName } = req.body;
 
     const options = {
       method: 'POST',
@@ -43,19 +44,19 @@ exports.createBasiqUser = async (req, res) => {
         accept: 'application/json',
         'basiq-version': '3.0',
         'content-type': 'application/json',
-        Authorization: req.headers.authorization,
+        Authorization: `${authToken}`,
       },
       data: {
-        email: email,
-        mobile: phoneNumber,
-        firstName: firstName,
-        lastName: lastName,
+        email: 'moe@moemail.com',
+        mobile: '0412 460 636',
+        firstName: 'Tristan',
+        lastName: 'Maber',
       },
     };
 
     const response = await axios.request(options);
-    const userId = response.data.id;
-
+    basiqUserId = response.data.id;
+    
     console.log(response.data);
 
     res.status(200).json({ message: 'Basiq user created' });
@@ -70,17 +71,18 @@ exports.createAuthLink = async (req, res) => {
   try {
     const options = {
       method: 'POST',
-      url: `https://au-api.basiq.io/users/${userId}/auth_link`,
+      url: `https://au-api.basiq.io/users/${basiqUserId}/auth_link`,
       headers: {
         accept: 'application/json',
+        'basiq-version': '3.0',
         'content-type': 'application/json',
-        Authorization: `${Authorization}`,
+        Authorization: `${authToken}`,
       },
       data: { mobile: user.phoneNumber }
     };
     
     const response = await axios.request(options);
-    const bankAuthLink = response.data.links.public;
+    bankAuthLink = response.data.links.public;
 
     console.log(response.data);
 
@@ -91,16 +93,40 @@ exports.createAuthLink = async (req, res) => {
   }
 };
 
+// GET BASIQ USER
+exports.getBasiqUser = async (req, res) => {
+  try {
+    const options = {
+      method: 'GET',
+      url: `https://au-api.basiq.io/users/${basiqUserId}`,
+      headers: {
+        accept: 'application/json',
+        Authorization: `${authToken}`,
+      }
+    };
+    
+    const response = await axios.request(options);
+    console.log(response.data);
+
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching Basiq user' });
+  }
+};
+
+
+
 // GET TRANSACTIONS
 exports.getTransactions = async (req, res) => {
   try {
     const options = {
       method: 'GET',
-      url: `https://au-api.basiq.io/users/${userId}/transactions`,
+      url: `https://au-api.basiq.io/users/${basiqUserId}/transactions`,
       params: { limit: '500' },
       headers: {
         accept: 'application/json',
-        authorization: `${Authorization}`
+        Authorization: `${authToken}`,
       }
     };
 
@@ -114,27 +140,3 @@ exports.getTransactions = async (req, res) => {
     res.status(500).json({ error: 'Error fetching transactions' });
   }
 };
-
-
-// GET BASIQ USER
-// exports.getBasiqUser = async (req, res) => {
-//   try {
-//     const options = {
-//       method: 'GET',
-//       url: `https://au-api.basiq.io/users/${userId}`,
-//       headers: {
-//         accept: 'application/json',
-//         authorization: `${Authorization}`
-//       }
-//     };
-    
-//     const response = await axios.request(options);
-    
-//     console.log(response.data);
-
-//     res.status(200).json(response.data);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Error fetching Basiq user' });
-//   }
-// };
