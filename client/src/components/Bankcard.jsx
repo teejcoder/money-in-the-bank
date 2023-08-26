@@ -1,40 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import ConnectBank from './ConnectBank';
+import React, { useState } from 'react';
+import AccessToken from './AccessToken';
+import CreateBasiqUser from './CreateBasiqUser';
 
-function Bankcard({children}) {
-  const [showAuthToken, setShowAuthToken] = useState(false);
-
-  useEffect(() => {
-    // Fetch data
-    axios.get('http://localhost:3000/api/authToken')
-      .then(response => {
-        console.log(response.data);
-
-        if (response.data.authToken) {
-          axios.defaults.headers.common['Authorization'] = response.data.authToken;
-          setShowAuthToken(true);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-
-  }, []);
+function Bankcard() {
+  const [showCreateBasiqUser, setShowCreateBasiqUser] = useState(false);
 
   function handleClick() {
-    console.log('connect bank clicked in BankCard component');
+    console.log('Event Handler clicked in BankCard component');
+    setShowCreateBasiqUser(true);
   }
 
   return (
     <section className="bankcard">
       <h2>It looks a bit empty here..</h2>
       <div>
+        <AccessToken />
+
         <button onClick={handleClick}>
           Connect Bank
         </button>
       </div>
-
+      
+      {showCreateBasiqUser && <CreateBasiqUser />}
     </section>
   );
 }

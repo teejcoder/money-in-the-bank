@@ -7,6 +7,7 @@ function Profile() {
 
   useEffect(() => {
     fetch("/profile")
+
   }, []);
 
   return (
